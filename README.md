@@ -12,3 +12,17 @@ export PATH=$PATH:$HOME/src/Software/rosetta_2014.35.57232_bundle/main/source/bi
 
 loopmodel.linuxgccrelease -database $MINIROSETTA_DATABASE -in::file::s bad.pdb -loops:loop_file bad.loop -loops:remodel perturb_kic -loops:refine refine_kic -ex1 -ex2 -nstruct 1000 -loops:max_kic_build_attempts 100 -in:file:fullatom
 ```
+
+To analyze:
+
+```
+import pandas as pd
+d = pd.read_table('./score.sc', skiprows=1, sep=r"\s*")
+q = d.set_index("description")["total_score"].copy()
+q.sort()
+```
+
+```
+sa()
+show lines, resi 147:172
+```
